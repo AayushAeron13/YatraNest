@@ -3,7 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const Listing = require("./Models/listings"); 
-const methodOverride=require("method-override")
+const methodOverride=require("method-override");
+const ejsMate=require("ejs-mate");
 main()
     .then(() => console.log("Connected to DB"))
     .catch(err => console.log(err));
@@ -11,11 +12,12 @@ main()
 async function main() {
     await mongoose.connect("mongodb://127.0.0.1:27017/YatraNest");
 }
-
+app.engine("ejs",ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname,"/public")))
 
 app.get("/", (req, res) => {
     res.send("Hi, I am root");
@@ -41,7 +43,7 @@ app.get("/listings/:id",async (req,res)=>{
 app.post("/listings", async (req, res) => {
     const newListing = new Listing(req.body.listing);
     await newListing.save(); 
-    res.redirect("listings"); 
+    res.redirect("/listings"); 
 
 });
 app.get("/listings/:id/edit",async(req,res)=>{
