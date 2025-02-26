@@ -9,3 +9,31 @@
 .nav-link{
     color: black !important;
 }
+.f-link{
+    text-decoration: none;
+    color: #222222;
+}
+.f-info div{
+    width: 100%;
+}
+.f-info{
+    padding-top:16px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height:90px;
+    background-color: lightgray;
+}
+.f-social-icons{
+    font-size: 1.2rem;
+    margin-right: 6px;
+}
+.f-docs a:hover{
+   text-decoration: underline;
+}
+.f-brand{
+    font-size: 1.2rem;
+}
+.f-docs{
+    font-size: 12px;
+}
