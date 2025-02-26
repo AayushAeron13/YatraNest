@@ -1,12 +1,19 @@
 body {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
+    display:flex;
+    flex-direction:column;
+    min-height: 100vh;
+}
+.container{
+    flex:1;
 }
 .navbar{
-    height:4.5rem;
+    height:4.6rem;
     background-color: white;
+    margin-bottom:10px;
 }
 .fa-om{
-    color:orangered;
+    color:orange;
     font-size:2rem;
 }
 .nav-link{
@@ -15,6 +22,7 @@ body {
 .f-link{
     text-decoration: none;
     color: #222222;
+    margin-right: 15px;
 }
 .f-info div{
     width: 100%;
@@ -24,12 +32,12 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    height:90px;
+    height:100px;
     background-color: lightgray;
 }
 .f-social-icons{
     font-size: 1.2rem;
-    margin-right: 6px;
+    margin-right: 10px;
 }
 .f-docs a:hover{
    text-decoration: underline;
@@ -38,7 +46,7 @@ body {
     font-size: 1.2rem;
 }
 .f-docs{
-    font-size: 12px;
+    font-size: 15px;
 }
 card-container{
     padding-left: 40px !important;
@@ -70,4 +78,8 @@ card-container{
 .card-img-overlay:hover{
     opacity:0.2;
     background-color: white;
+}
+.add-btn{
+    background-color: orange !important;
+    border:none !important
 }
