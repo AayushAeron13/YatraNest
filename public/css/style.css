@@ -1,3 +1,11 @@
-body{
-    background-color:bisque;
+.navbar{
+    height:4.5rem;
+    background-color: white;
+}
+.fa-om{
+    color:orangered;
+    font-size:2rem;
+}
+.nav-link{
+    color: black !important;
 }
