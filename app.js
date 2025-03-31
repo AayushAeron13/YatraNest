@@ -8,6 +8,8 @@ const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
 const {listingSchema}=require("./schema.js");
+const Review = require("./Models/review"); 
+
 main()
     .then(() => console.log("Connected to DB"))
     .catch(err => console.log(err));
@@ -75,6 +77,15 @@ app.delete("/listings/:id",wrapAsync(async(req,res)=>{
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
 }));
+// review post
+app.post("/listings/:id/reviews",async(req,res)=>{
+    let listing=await Listing.findById(req.params.id); // params is used when to access data from route/URL In this case ID is present
+    let newReview=new Review(req.body.review); // body is used when we post data In our case it is review
+    listing.reviews.push(newReview);
+    await newReview.save();
+    await listing.save();
+    res.redirect(`/listings/${listing._id}`);
+})
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"Page not found"));
 })
