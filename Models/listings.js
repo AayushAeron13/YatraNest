@@ -6,18 +6,24 @@ const Schema = mongoose.Schema;
 // many operations like using middlewares as we know in mongodb we have different types of
 // key-value pairs in different data-ID
 const listingSchema = new Schema({
-   title: {
+  title: {
     type: String,
     required: true,
   },
   description: String,
-  image: { 
-    filename: String, 
-    url: String 
+  image: {
+    filename: String,
+    url: String
   },
-    price: Number,
-    location: String,
-    country: String,
+  price: Number,
+  location: String,
+  country: String,
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 const Listing = mongoose.model("Listing", listingSchema);
-module.exports=Listing;
+module.exports = Listing;
