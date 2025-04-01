@@ -52,7 +52,7 @@
      res.redirect(`/listings/${id}`);
  }));
  // delete
- router.delete("/listings/:id", wrapAsync(async (req, res) => {
+ router.delete("/:id", wrapAsync(async (req, res) => {
      let { id } = req.params;
      await Listing.findByIdAndDelete(id);
      res.redirect("/listings");
