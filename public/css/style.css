@@ -51,8 +51,11 @@ body {
 card-container{
     padding-left: 40px !important;
 }
-.card{
-    border:none !important;
+/* .card{
+     border:none !important; 
+} */
+.no-border {
+    border: none !important;
 }
 .card-body{
     padding-top: 0 !important;
