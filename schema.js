@@ -4,7 +4,10 @@ const Joi=require('joi');
    title:Joi.string().required(),
    description:Joi.string().required(),
    location:Joi.string().required(),
-   price:Joi.string().required().min(0),
+   price:Joi.number().required().min(0),
+   image: Joi.object({
+    url: Joi.string().uri().required(),
+  }).required(),
    country:Joi.string().required(),
   }).required(),
  });

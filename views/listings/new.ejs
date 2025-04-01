@@ -15,12 +15,12 @@
         </div>
         <div class="mb-2">
             <label for="Image" class="form-label">Image</label>
-            <input name="listing[image]" placeholder="enter image URL/link" type="text" class="form-control" />
+            <input name="listing[image][url]" placeholder="enter image URL/link" type="text" class="form-control" required/>
         </div>
         <div class="row ">
             <div class="mb-2 col-md-4">
                 <label for="Price" class="form-label">Price</label>
-                <input name="listing[price]" placeholder="enter price" class="form-control" required/>
+                <input name="listing[price]" placeholder="enter price" class="form-control" type="number" required/>
                 <div class="invalid-feedback">Price should be valid</div>
             </div>
             <div class="mb-2 col-md-8">
