@@ -48,7 +48,7 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session()); // A web application needs the ability to know that the same user is browsing from page to page
-passport.use(new LocalStrategy(User.authenticate)); // yeh kehta jo hamne dalehai jaise ki email woh bhi use karna default ke alawa i.e. username and password
+passport.use(new LocalStrategy(User.authenticate())); // yeh kehta jo hamne dalehai jaise ki email woh bhi use karna default ke alawa i.e. username and password
 passport.serializeUser(User.serializeUser()); // when we store user information in a session
 passport.deserializeUser(User.deserializeUser()); // when we remove user information in a session
 
