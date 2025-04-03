@@ -39,7 +39,7 @@ router.get("/logout",(req,res,next)=>{
         if(err)
         return next(err);
         else{
-            req.flash("success","Successfully logged out See you Again Soon!");
+            req.flash("success","Successfully logged out , See you Again Soon!");
             res.redirect("/listings");
         }
     });

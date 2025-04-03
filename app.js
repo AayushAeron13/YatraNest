@@ -55,6 +55,7 @@ passport.deserializeUser(User.deserializeUser()); // when we remove user informa
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser=req.user;// passport stores user information in req.user we can access if it is undefined then there is no user
     next();
 });
 app.use("/listings", listingRouter);
