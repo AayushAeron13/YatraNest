@@ -9,6 +9,9 @@ const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport=require("passport");
+const LocalStrategy=require("passport-local");
+const User=require(".models/user.js");
 main()
     .then(() => console.log("Connected to DB"))
     .catch(err => console.log(err));
@@ -40,6 +43,13 @@ app.get("/", (req, res) => {
 });
 app.use(session(sessionOptions));
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session()); // A web application needs the ability to know that the same user is browsing from page to page
+passport.use(new LocalStrategy(User.authenticate)); // yeh kehta jo hamne dalehai jaise ki email woh bhi use karna default ke alawa i.e. username and password
+passport.serializeUser(User.serializeUser()); // when we store user information in a session
+passport.deserializeUser(User.deserializeUser()); // when we remove user information in a session
+
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
