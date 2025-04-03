@@ -1,5 +1,5 @@
-const express = require('express');
- const router = express.Router({mergeParams:true});
+ const express = require('express');
+ const router = express.Router({mergeParams:true}); // yeh help karta jo common path app.js mein eh gaya uska access review,js mein bhi mil jaye jaise ki delete ke time pe hame id chahiye jo mergeparams ko true karne pe hi milegi
  const Review = require('../Models/review.js');
  const wrapAsync =  require('../utils/wrapAsync.js');
  const ExpressError = require('../utils/ExpressError.js');
