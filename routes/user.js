@@ -12,8 +12,12 @@ router.post("/signup", wrapAsync(async (req, res) => {
         let { username, email, password } = req.body;
         const newUser = new User({ email, username });
         const registeredUser = await User.register(newUser, password);
-        req.flash("success", "Welcome to YatraNest");
-        res.redirect("/listings");
+        req.login(registeredUser, (err) => {
+            if (err) {
+                return next(err);}
+            req.flash("success", "Welcome to YatraNest");
+            res.redirect("/listings");
+        });
     }
     catch (err) {
         req.flash("error", err.message);
@@ -26,20 +30,20 @@ router.get("/login", (req, res) => {
 router.post(
     "/login",
     passport.authenticate("local", {
-      failureRedirect: "/login",
-      failureFlash: true,
+        failureRedirect: "/login",
+        failureFlash: true,
     }),
     wrapAsync(async (req, res) => {
-     req.flash("success",`Welcome back ${req.body.username}`);
-     res.redirect("/listings");
+        req.flash("success", `Welcome back ${req.body.username}`);
+        res.redirect("/listings");
     })
-  );
-router.get("/logout",(req,res,next)=>{
-    req.logOut((err)=>{
-        if(err)
-        return next(err);
-        else{
-            req.flash("success","Successfully logged out , See you Again Soon!");
+);
+router.get("/logout", (req, res, next) => {
+    req.logOut((err) => {
+        if (err)
+            return next(err);
+        else {
+            req.flash("success", "Successfully logged out , See you Again Soon!");
             res.redirect("/listings");
         }
     });
