@@ -2,19 +2,9 @@
  const router = express.Router({mergeParams:true}); // yeh help karta jo common path app.js mein eh gaya uska access review,js mein bhi mil jaye jaise ki delete ke time pe hame id chahiye jo mergeparams ko true karne pe hi milegi
  const Review = require('../Models/review.js');
  const wrapAsync =  require('../utils/wrapAsync.js');
- const ExpressError = require('../utils/ExpressError.js');
- const {reviewSchema} = require('../schema.js');
  const Listing = require("../Models/listings");
-
- const validateReview = (req, res, next) => {
-     let { error } = reviewSchema.validate(req.body);
-     if (error) {
-         let errMsg = error.details.map((el) => el.message).join(",");
-         throw new ExpressError(400, errMsg);
-     }
-     else
-         next();
- };
+ const {validateReview} = require('../middlewares.js');
+ 
 // review post
 router.post("/", validateReview, wrapAsync(async (req, res) => {
     let listing = await Listing.findById(req.params.id); // params is used when to access data from route/URL In this case ID is present

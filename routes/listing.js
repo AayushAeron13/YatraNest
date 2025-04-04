@@ -2,20 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Listing = require('../Models/listings.js');
 const wrapAsync = require('../utils/wrapAsync.js');
-const ExpressError = require('../utils/ExpressError.js');
-const { listingSchema } = require('../schema.js');
 const { isLoggedIn, isOwner } = require('../middlewares.js');
-
-//schema validation 
-validateListing = function (req, res, next) {
-    let { error } = listingSchema.validate(req.body);  // yeh hai joi wala agar hoppscotch se bhejte hai toh post request bina kuch entries dale 
-    if (error) {
-        let errMsg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(400, errMsg);
-    } else {
-        next();
-    }
-}
+const {validateListing} = require("../middlewares.js");
 
 router.get("/", wrapAsync(async (req, res) => {
     const allListings = await Listing.find({});
