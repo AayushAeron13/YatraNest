@@ -3,10 +3,10 @@
  const Review = require('../Models/review.js');
  const wrapAsync =  require('../utils/wrapAsync.js');
  const Listing = require("../Models/listings");
- const {validateReview} = require('../middlewares.js');
+ const {validateReview, isLoggedIn} = require('../middlewares.js');
  
 // review post
-router.post("/", validateReview, wrapAsync(async (req, res) => {
+router.post("/",isLoggedIn, validateReview, wrapAsync(async (req, res) => {
     let listing = await Listing.findById(req.params.id); // params is used when to access data from route/URL In this case ID is present
     let newReview = new Review(req.body.review); // body is used when we post data In our case it is review
     listing.reviews.push(newReview);
