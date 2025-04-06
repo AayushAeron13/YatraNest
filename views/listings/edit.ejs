@@ -13,6 +13,11 @@
                         <textarea name="listing[description]" class="form-control" required><%=listing.description%></textarea>
                         <div class="invalid-feedback">Please write a short description</div>
                     </div>
+                    <div class="mb-3">
+                        <label for="original_image">Original image</label>
+                        <br><br>
+                        <img src="<%- original_image_url%>" alt="img" style="border-radius: 30px;">
+                      </div>
                     <div class="mb-2">
                         <lable for="Image" class="form-label">Upload new Image</lable>
                         <input name="listing[image]" value="<%=listing.image.url%>" type="file" class="form-control"/>
