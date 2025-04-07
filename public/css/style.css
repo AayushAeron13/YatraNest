@@ -9,11 +9,11 @@ body {
 }
 .navbar{
     height:4.6rem;
-    background-color: white;
+    background-color: whitesmoke !important;
     margin-bottom:10px;
 }
 .fa-om{
-    color:orange;
+    color: rgb(255, 106, 0);
     font-size:2rem;
 }
 .nav-link{
