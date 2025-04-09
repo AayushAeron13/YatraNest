@@ -84,11 +84,11 @@ card-container{
     background-color: white;
 }
 .add-btn{
-    background-color: orange !important;
+    background-color: rgb(255, 106, 0)!important;
     border:none !important
 }
 .edit-btn{
-    background-color: orange !important;
+    background-color: rgb(255, 106, 0) !important;
     border:none !important
 }
 .show-img{

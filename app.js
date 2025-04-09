@@ -12,17 +12,18 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./Models/user.js");
-
+const DB_URL = process.env.ATLASDB_URL;
 main()
     .then(() => console.log("Connected to DB"))
     .catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/YatraNest");
+    await mongoose.connect(DB_URL);
 }
 
 app.engine("ejs", ejsMate);
@@ -31,8 +32,19 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")))
+const store = MongoStore.create({
+    mongoUrl:DB_URL,
+    crypto:{
+        secret:"mysupersecretcode"
+    },
+    touchAfter: 24*3600
+});
 
+store.on("error",()=>{
+    console.error("Error in mongo session store",err);
+})
 const sessionOptions = {
+    store,
     secret: "mysupersecretcode",
     resave: false, // agar memory store mein change nhi hua ho phir bhi save karta tha band kar diya
     saveUninitialized: true, //=>Agar koi naya session create hota hai lekin usme abhi tak koi data save nahi hua, 
